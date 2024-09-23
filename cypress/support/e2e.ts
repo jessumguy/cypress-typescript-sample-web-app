@@ -17,6 +17,7 @@
 import './commands'
 import 'cypress-real-events/support'
 import './commands/login'
+import './commands/getBySelector'
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

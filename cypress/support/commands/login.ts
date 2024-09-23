@@ -12,11 +12,11 @@ declare namespace Cypress {
 
 Cypress.Commands.add('login', (username: string, password: string) => {
     cy.visit('/')
-    cy.get('[data-test="username"]')
+    cy.getBySelector('username')
       .type(username)
-    cy.get('[data-test="password"]')
+    cy.getBySelector('password')
       .type(password)
-    cy.get('[data-test="login-button"]')
+    cy.getBySelector('login-button')
       .click()
     cy.url().should('contain', '/inventory.html')
 })

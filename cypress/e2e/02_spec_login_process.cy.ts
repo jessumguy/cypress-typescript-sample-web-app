@@ -7,10 +7,10 @@ describe('attempt login without inputting username', () => {
     });
 
     it(`displays error "Username is required"`, () => {
-        cy.get('[data-test="login-button"]')
+        cy.getBySelector('login-button')
           .click()
 
-        cy.get('[data-test="error"]')
+        cy.getBySelector('error')
           .should('be.visible')
           .and('have.text', 'Epic sadface: Username is required')
     });
@@ -25,13 +25,13 @@ describe('attempt to login with only username input', () => {
     it(`displays error "Password is required"`, () => {
         const randomUser = Cypress._.sample(usersLoginDetails);
 
-        cy.get('[data-test="username"]')
+        cy.getBySelector('username')
           .type(randomUser.username)
 
-        cy.get('[data-test="login-button"]')
+        cy.getBySelector('login-button')
           .click()
 
-        cy.get('[data-test="error"]')
+        cy.getBySelector('error')
           .should('be.visible')
           .and('have.text', 'Epic sadface: Password is required')
     });
@@ -49,16 +49,16 @@ describe('attempt to login with incorrect username and/or password', () => {
         const username = `username${createRandomId()}`
         const password = `password${createRandomId()}`
         
-        cy.get('[data-test="username"]')
+        cy.getBySelector('username')
           .type(username)
 
-        cy.get('[data-test="password"]')
+        cy.getBySelector('password')
           .type(password)
 
-        cy.get('[data-test="login-button"]')
+        cy.getBySelector('login-button')
           .click()
 
-        cy.get('[data-test="error"]')
+        cy.getBySelector('error')
           .should('be.visible')
           .and('have.text', 'Epic sadface: Username and password do not match any user in this service')
     });
@@ -72,13 +72,13 @@ describe('attempt to login with correct username and password', () => {
     it('login is successful', () => {
         const randomUser = Cypress._.sample(usersLoginDetails);
       
-        cy.get('[data-test="username"]')
+        cy.getBySelector('username')
           .type(randomUser.username)
 
-        cy.get('[data-test="password"]')
+        cy.getBySelector('password')
           .type(randomUser.password)
 
-        cy.get('[data-test="login-button"]')
+        cy.getBySelector('login-button')
           .click()
         
         cy.url().should('contain', '/inventory.html')
@@ -88,11 +88,11 @@ describe('attempt to login with correct username and password', () => {
 describe('UI - able to log in and log out successfully', () => {
   beforeEach(() => {
     cy.visit('/')
-    cy.get('[data-test="username"]')
+    cy.getBySelector('username')
       .type('standard_user')
-    cy.get('[data-test="password"]')
+    cy.getBySelector('password')
       .type('secret_sauce')
-    cy.get('[data-test="login-button"]')
+    cy.getBySelector('login-button')
       .click()
     cy.url().should('contain', '/inventory.html')
   });

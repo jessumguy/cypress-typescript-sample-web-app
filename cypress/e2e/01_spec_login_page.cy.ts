@@ -10,19 +10,19 @@ describe('login page displays the page title, username and password input fields
   })
 
   it('displays username and password input fields with placeholder', () => {
-    cy.get('[data-test="username"]')
+    cy.getBySelector('username')
       .should('have.attr', 'type', 'text')
       .should('be.visible')
       .should('have.attr', 'placeholder', 'Username')
     
-    cy.get('[data-test="password"]')
+    cy.getBySelector('password')
       .should('have.attr', 'type', 'password')
       .should('be.visible')
       .should('have.attr', 'placeholder', 'Password')
   })
 
   it('displays login button', () => {
-    cy.get('[data-test="login-button"]')
+    cy.getBySelector('login-button')
       .should('have.attr', 'type', 'submit')
       .should('be.visible')
       .and('have.value', 'Login')
